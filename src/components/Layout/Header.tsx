@@ -1,11 +1,15 @@
 import "./Header.css"
 import HeaderCartButton from "./HeaderCartButton";
 
-const Header = () => {
+type HeaderProps = {
+  onShowCart: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({onShowCart}) => {
   return (
     <header className="header">
       <h1>Trend Mağaza</h1>
-     <HeaderCartButton />
+     <HeaderCartButton onShowCart={onShowCart} />
     </header>
   );
 };

@@ -1,9 +1,12 @@
 import CartIcon from "../Cart/CartIcon";
 import "./HeaderCartButton.css"
+type HeaderProps = {
+  onShowCart: () => void;
+};
 
-const HeaderCartButton = () => {
+const HeaderCartButton: React.FC<HeaderProps> = ({onShowCart}) => {
   return (
-    <button className="button">
+    <button className="button" onClick={onShowCart}>
       <span className="icon">
         <CartIcon />
       </span>

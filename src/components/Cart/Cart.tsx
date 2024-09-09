@@ -2,9 +2,14 @@ import React from "react";
 import CartItem from "./CartItem";
 import products from "../../productData";
 import "./Cart.css";
+import Offcanvas from "../UI/Offcanvas";
 
-const Cart = () => {
-  const cartItems = () => (
+type OnHideCart = {
+  onHideCart: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+};
+
+const Cart: React.FC<OnHideCart> = ({ onHideCart }) => {
+  const cartItems = (
     <ul className="cart-items">
       {products.map((product) => (
         <CartItem key={product.id} product={product} />
@@ -12,25 +17,23 @@ const Cart = () => {
     </ul>
   );
   return (
-    <div className="offcanvas">
-      <div className="content">
-        <div className="cart-head">
-          <h2>Sepetim</h2>
-          <a href="/" className="cart-close">
-            X
-          </a>
-        </div>
-        {cartItems}
-        <div className="total">
-          <span>Toplam Değer</span>
-          <span>10</span>₺
-        </div>
-        <div className="actions">
-          <button className="cart-order">Sipariş Ver</button>
-          <button className="cart-clear">Temizle</button>
-        </div>
+    <Offcanvas onHideCart={onHideCart}>
+      <div className="cart-head">
+        <h2>Sepetim</h2>
+        <a onClick={onHideCart} className="cart-close">
+          X
+        </a>
       </div>
-    </div>
+      {cartItems}
+      <div className="total">
+        <span>Toplam Değer</span>
+        <span>10</span>₺
+      </div>
+      <div className="actions">
+        <button className="cart-order">Sipariş Ver</button>
+        <button className="cart-clear">Temizle</button>
+      </div>
+    </Offcanvas>
   );
 };
 
