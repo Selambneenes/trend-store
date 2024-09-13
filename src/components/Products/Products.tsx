@@ -1,4 +1,3 @@
-import React from 'react'
 import "./Products.css"
 import products from '../../productData'
 import ProductItem from './ProductItem'

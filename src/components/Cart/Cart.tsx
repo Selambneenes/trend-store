@@ -5,7 +5,7 @@ import "./Cart.css";
 import Offcanvas from "../UI/Offcanvas";
 
 type OnHideCart = {
-  onHideCart: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  onHideCart: (e: React.MouseEvent<HTMLElement>) => void;
 };
 
 const Cart: React.FC<OnHideCart> = ({ onHideCart }) => {

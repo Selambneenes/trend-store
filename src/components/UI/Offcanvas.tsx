@@ -3,7 +3,7 @@ import "./Offcanvas.css";
 
 type OffcanvasType = {
   children: React.ReactNode;
-  onHideCart: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  onHideCart: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 const Offcanvas: React.FC<OffcanvasType> = ({children, onHideCart}) => {

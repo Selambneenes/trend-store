@@ -10,7 +10,7 @@ function App() {
     setCartIsShow(true);
   }
 
-  const hideCartHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const hideCartHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setCartIsShow(false);
   };
