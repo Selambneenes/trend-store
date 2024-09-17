@@ -1,22 +1,28 @@
-import React from 'react'
+import React from "react";
 import "./Offcanvas.css";
+import { BackdropType, OffcanvasOverlayType, OffcanvasType } from "../../ts/OffCanvas";
+import ReactDOM from "react-dom";
 
-type OffcanvasType = {
-  children: React.ReactNode;
-  onHideCart: (e: React.MouseEvent<HTMLDivElement>) => void;
+const Backdrop: React.FC<BackdropType> = ({ onHideCart }) => {
+  return <div className="backdrop" onClick={onHideCart} />;
 };
 
-const Offcanvas: React.FC<OffcanvasType> = ({children, onHideCart}) => {
+const OffCanvasOverlay: React.FC<OffcanvasOverlayType> = ({children}) => {
   return (
-    <div>
-        <div className='backdrop' onClick={onHideCart}/>
-        <div className='offcanvas'>
-            <div className="content">
-                {children}
-            </div>
-        </div>
-    </div>
+      <div className="offcanvas">
+        <div className="content">{children}</div>
+      </div>
   )
 }
 
-export default Offcanvas 
+const Offcanvas: React.FC<OffcanvasType> = ({ children, onHideCart }) => {
+  const portalElement = document.querySelector("overlays");
+  return (
+    <>
+      {ReactDOM.createPortal(<OffCanvasOverlay>{children}</OffCanvasOverlay>, portalElement!)}
+      {ReactDOM.createPortal(<Backdrop onHideCart={onHideCart} />, portalElement!)}
+    </>
+  );
+};
+
+export default Offcanvas;
